@@ -22,11 +22,15 @@ class Traktor: Car {
     var modelTraktor: String = "T-800"
     var speedMaxTrak: UInt = 60
     
+//    init(engine: Engine = Engine(maxSpead: 50), model: String = "John Deer") {
+//        super.init(model: model, engine: engine, display: Display())
+    
     override init(_ modelTraktor: String = "T-800"
 //                  _ speedMaxTrak: UInt = 60
         ) {
         self.modelTraktor = modelTraktor
         super.init(self.modelTraktor)
 //        self.speedMaxTrak = speedMaxTrak
+        
     }
 }
