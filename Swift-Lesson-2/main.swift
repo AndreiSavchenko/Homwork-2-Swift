@@ -21,47 +21,49 @@ class Car {
     private var motor = Motor()
     private var display = Display()
     
+    init(_ modelCar: String) {
+        self.modelCar = modelCar
+    }
+    
     func viewDisplay() {
         display.view(carModel: modelCar, stateMotor: motor.stateMotor, speed: motor.speed)
     }
     
     func motorStart() {
-        if motor.stateMotor == true {
+        if motor.stateMotor {
             print("Мотор уже заведён")
         }
-        if motor.stateMotor == false {
+        if !motor.stateMotor {
             motor.statesMotor(onOff: false)
             print("Мотор заведён")
         }
     }
     
     func motorStop() {
-        if motor.stateMotor == false {
+        if !motor.stateMotor {
             print("Мотор уже заглушен")
         }
-        if motor.stateMotor == true {
+        if motor.stateMotor {
             motor.statesMotor(onOff: true)
             motor.speed = 0
             print("Мотор заглушен")
         }
     }
     
-    func setSpeed(speedCurr:UInt) {
+    func setSpeed(speedCurr: UInt) {
         
-        if motor.stateMotor==false {
+        if !motor.stateMotor {
             print("Сначала заведите мотор")
         }
         
-        if motor.stateMotor==true {
-            
+        if motor.stateMotor {
             if speedCurr > motor.speedMax {
-                print ("Заданная скорость больше максимальной для этой модели")
-            }
-            else {
+                print("Заданная скорость больше максимальной для этой модели")
+            } else {
                 self.motor.speed = speedCurr
             }
         }
-    print ("Скорость авто \(motor.speed)")
+    print("Скорость авто \(motor.speed)")
     }
     
     func pressBrake() {
@@ -78,7 +80,6 @@ class Car {
 }
 
 class Motor {
-    //    code classa
     var stateMotor: Bool = false                    // состояние выкл/вкл
     var wheels: String = "Колёса не крутятся"       // колёса
     var brake: String = "Отжата педаль тормоза"     // тормоз
@@ -86,14 +87,27 @@ class Motor {
     var speedMax: UInt = 320                        // скорость макс
     var onOff: Bool = false
     
+    init(_ stateMotor: Bool = false,
+         _ wheels: String = "Колёса не крутятся",
+         _ brake: String = "Отжата педаль тормоза",
+         _ speed: UInt = 0,
+         _ speedMax: UInt = 320,
+         _ onOff: Bool = false) {
+        self.stateMotor = stateMotor
+        self.wheels = wheels
+        self.brake = brake
+        self.speed = speed
+        self.speedMax = speedMax
+        self.onOff = onOff
+    }
+    
     func statesMotor(onOff: Bool) {
-        if onOff == false {
+        if !onOff {
             stateMotor = true
         }
-        if onOff == true {
+        if onOff {
             stateMotor = false
         }
-//        return stateMotor
     }
     
     func stateWheels() -> String {
@@ -103,34 +117,32 @@ class Motor {
         if speed == 0 {
             wheels = "Колёса не крутятся"
         }
-       return wheels
+        return wheels
     }
     
     func speedReduction() {                                       // уменьшение скорости
         switch speed {
         case 20...speedMax:
-            print ("Скорость снижена на 20 км/ч")
+            print("Скорость снижена на 20 км/ч")
         case 1...19:
-            print ("Авто остановилось")
+            print("Авто остановилось")
         default:
-            print ("Авто стоит")
+            print("Авто стоит")
         }
     }
 }
 
 class Display {
-    //    code classa
-    
     func view( carModel: String,  stateMotor: Bool, speed: UInt) {
-        print ("Автомобиль \(carModel)\n" +
+        print("--- Display View ---\n" +
+        "Автомобиль \(carModel)\n" +
         "Мотор \(stateMotor)\n" +
-        "Скорость  \(speed)")
+        "Скорость  \(speed)\n" +
+        "--------------------")
     }
 }
 
-var car = Car()
+var car = Car("BMW")
 car.viewDisplay()
 car.motorStart()
-car.setSpeed(speedCurr: 60)
-//car.pressBrake()
-car.viewDisplay()
+car.motorStart()
