@@ -21,12 +21,15 @@ class Car {
     private var motor = Motor()
     private var display = Display()
     
-    init(_ modelCar: String) {
+    init(_ modelCar: String = "Tesla Model S") {
         self.modelCar = modelCar
     }
     
     func viewDisplay() {
-        display.view(carModel: modelCar, stateMotor: motor.stateMotor, speed: motor.speed)
+        display.view(carModel: modelCar,
+                     stateMotor: motor.stateMotor,
+                     speed: motor.speed,
+                     speedMax: motor.speedMax)
     }
     
     func motorStart() {
@@ -71,9 +74,6 @@ class Car {
         print(motor.brake)
         motor.speedReduction()
         sleep(2)
-        depressBrake()
-    }
-    func depressBrake() {
         motor.brake = "Отжата педаль тормоза"
         print(motor.brake)
     }
@@ -133,16 +133,20 @@ class Motor {
 }
 
 class Display {
-    func view( carModel: String,  stateMotor: Bool, speed: UInt) {
+    func view( carModel: String,  stateMotor: Bool, speed: UInt, speedMax: UInt) {
         print("--- Display View ---\n" +
         "Автомобиль \(carModel)\n" +
         "Мотор \(stateMotor)\n" +
-        "Скорость  \(speed)\n" +
+        "Скорость текущая \(speed)\n" +
+        "Скорость максимальная \(speedMax)\n" +
         "--------------------")
     }
 }
 
-var car = Car("BMW")
+var car = Car()
 car.viewDisplay()
 car.motorStart()
-car.motorStart()
+car.setSpeed(speedCurr: 60)
+car.pressBrake()
+car.motorStop()
+car.viewDisplay()
