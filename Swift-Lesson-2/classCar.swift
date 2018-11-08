@@ -13,7 +13,7 @@ class Car {
     private var motor = Motor()
     private var display = Display()
     
-    init(_ modelCar: String = "Tesla Model S") {
+    init(_ modelCar: String) {
         self.modelCar = modelCar
     }
     

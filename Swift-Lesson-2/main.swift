@@ -25,7 +25,8 @@
 //Захистіть поля і методи Двигуна так щоб користувач не знав нічого про Двигун якщо використовує класс Автомобіль
 import Foundation
 
-var car = Car()
-var bu = TraktorBucket()
-bu.bucketOn()
-bu.bucketControl(direct: .right)
+var tractor = Traktor()
+tractor.viewDisplay()
+tractor.motorStart()
+tractor.setSpeed(speedCurr: 40)
+tractor.setSpeed(speedCurr: 80)

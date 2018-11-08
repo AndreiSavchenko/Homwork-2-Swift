@@ -16,3 +16,17 @@
 //Захистіть поля і методи Двигуна так щоб користувач не знав нічого про Двигун якщо використовує класс Автомобіль
 
 import Foundation
+
+class Traktor: Car {
+    var bucket = TraktorBucket()
+    var modelTraktor: String = "T-800"
+    var speedMaxTrak: UInt = 60
+    
+    override init(_ modelTraktor: String = "T-800"
+//                  _ speedMaxTrak: UInt = 60
+        ) {
+        self.modelTraktor = modelTraktor
+        super.init(self.modelTraktor)
+//        self.speedMaxTrak = speedMaxTrak
+    }
+}
