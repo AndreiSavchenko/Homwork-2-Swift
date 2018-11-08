@@ -26,9 +26,6 @@
 import Foundation
 
 var car = Car()
-car.viewDisplay()
-car.motorStart()
-car.setSpeed(speedCurr: 60)
-car.pressBrake()
-car.motorStop()
-car.viewDisplay()
+var bu = TraktorBucket()
+bu.bucketOn()
+bu.bucketControl(direct: .right)

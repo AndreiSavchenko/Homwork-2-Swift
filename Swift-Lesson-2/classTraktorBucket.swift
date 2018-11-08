@@ -18,8 +18,7 @@
 import Foundation
 
 class TraktorBucket {
-    var stateBucket: Bool = false
-//    var onOffBucket: Bool = false
+    private var stateBucket: Bool = false
     
     init(stateBucket: Bool = false) {
         self.stateBucket = stateBucket
@@ -44,7 +43,24 @@ class TraktorBucket {
             print("Ковш выключен")
         }
     }
+    
+    enum Direction {
+        case left
+        case right
+        case up
+        case down
+    }
+    
+    func bucketControl(direct: Direction) {
+        switch direct {
+        case . left:
+            print("Ковш повернули налево")
+        case . right:
+            print("Ковш повернули направо")
+        case .up:
+            print("Ковш поднят вверх")
+        case .down:
+            print("Ковш опущен вниз")
+        }
+    }
 }
-
-var bu = TraktorBucket()
-bu.bucketOn()
